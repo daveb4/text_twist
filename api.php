@@ -8,7 +8,7 @@
   		return implode($temp);
 	};
 	$rack = generate_rack(7);
-
+	$myrack = $rack;
 	$racks = [];
 	for($i = 0; $i < pow(2, strlen($myrack)); $i++){
 		$ans = "";
