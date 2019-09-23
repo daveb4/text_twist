@@ -34,6 +34,7 @@
     // ordering by rank, etc.
     foreach ($racks as $nrack){
         //this is vulnerable to sql injection but not sure how to handle it yet.
+	//I believe there is a problem with this statement. Solution in progress
         $query = "SELECT words FROM racks where rack = $nrack";
     
     //this next line could actually be used to provide user_given input to the query to 
