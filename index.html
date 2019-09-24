@@ -2,17 +2,45 @@
 <html>
     <head>
         <title>Text Twist</title>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     </head>
     <body>
         <h1>Welcome to Text Twist</h1>
         <button id="start">Click for a rack</button>
         <p></p>
         <h2>Current rack:</h2>
-        <p id="rack"></p>
+        <h4 id="rack"></h4>
+        <h5 id="test"></h5>
         <input type="text" id="guess">
         <button id="checkanswer">Check</button>
         <p id="check"></p>
         <p id="correct?"></p>
     </body>
-    <script src="jstexttwist.js"></script>
+    <script>
+    var solutions;
+    var rack;
+        $("#start").on("click", function(data){
+        $.ajax({
+            url: "index.php",
+            method: "GET",
+            success: function (data) {
+                var info = data;
+                rack = info[0].rack;           
+                document.getElementById("rack").textContent = rack;
+            }
+        });
+        $.ajax({
+                url: 'subracks.php',
+                method: 'POST',
+                data: {myrack: rack},
+                success: function (data){
+                    var subracks = data;
+                    document.getElementById("test").textContent = subracks;
+                }
+            });
+    });
+    </script>
+    <!--<script src="js2.js"></script>-->
+    <!--<script src="jstexttwist.js"></script>-->
 </html>
+
